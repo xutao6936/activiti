@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: activiti
+  datasource:
+    url: jdbc:mysql://139.196.96.100:3306/activiti?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    druid:
+      validationQuery: SELECT 1
+      initialSize: 10
+      minIdle: 10
+      maxActive: 200
+      minEvictableIdleTimeMillis: 180000
+      testOnBorrow: false
+      testWhileIdle: true
+      removeAbandoned: true
+      removeAbandonedTimeout: 1800
+      logAbandoned: true
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 100
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+    prefix: classpath:/static/
+    suffix: .html
+    servlet:
+      content-type: text/html
+  security:
+    user:
+      name: nbcb
+      password: nbcb
+server:
+  port: 8888
+debug: true
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+          strategy: SEMAPHORE
+      circuitBreaker:
+        enabled: true
+      fallback:
+        enabled: true
+
